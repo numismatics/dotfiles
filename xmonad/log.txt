@@ -1,0 +1,2 @@
+urxvt: X connection to ':0' broken, unable to recover, exiting.
+urxvt: X connection to ':0' broken, unable to recover, exiting.

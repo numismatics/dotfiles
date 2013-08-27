@@ -1,0 +1,8 @@
+Configuration files for xmonad and xmobar.
+
+Dependencies:
+    trayer
+    feh
+    network manager (and applet)
+    gnome keyring
+    

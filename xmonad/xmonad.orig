@@ -1,0 +1,71 @@
+    --
+    -- An example, simple ~/.xmonad/xmonad.hs file.
+    -- It overrides a few basic settings, reusing all the other defaults.
+    --
+
+    import XMonad
+    import XMonad.Core
+    import XMonad.Layout
+    import XMonad.Layout.IM
+    import XMonad.Layout.Gaps
+    import XMonad.Layout.Named
+    import XMonad.Layout.Tabbed
+    import XMonad.Layout.OneBig
+    import XMonad.Layout.Master
+    import XMonad.Layout.Reflect
+    import XMonad.Layout.MosaicAlt
+    import XMonad.Layout.NoFrillsDecoration
+    import XMonad.Layout.SimplestFloat
+    import XMonad.Layout.NoBorders (noBorders,smartBorders,withBorder)
+    import XMonad.Layout.ResizableTile
+    import XMonad.Layout.MultiToggle
+    import XMonad.Layout.MultiToggle.Instances
+    import XMonad.Layout.PerWorkspace (onWorkspace)
+    import XMonad.Layout.Minimize
+    import XMonad.Layout.Maximize
+    import XMonad.Layout.WindowNavigation
+    import XMonad.StackSet (RationalRect (..), currentTag) 
+    import XMonad.Hooks.DynamicLog
+    import XMonad.Hooks.DynamicHooks
+    import XMonad.Hooks.ManageDocks
+    import XMonad.Hooks.UrgencyHook
+    import XMonad.Hooks.EwmhDesktops
+    import XMonad.Hooks.SetWMName
+    import XMonad.Hooks.ManageHelpers
+    import XMonad.Hooks.DynamicLog
+    import XMonad.Hooks.ManageDocks
+    import XMonad.Util.Run(spawnPipe)
+    import XMonad.Util.EZConfig(additionalKeys)
+    import XMonad.Util.Loggers
+    import XMonad.Util.Timer
+    import XMonad.Util.Cursor
+    import XMonad.Util.EZConfig
+    import XMonad.Util.Run (spawnPipe)
+    import XMonad.Util.Scratchpad
+    import XMonad.Util.NamedScratchpad
+    import XMonad.Actions.GridSelect
+    import Data.IORef
+    import Data.Monoid
+    import Data.List
+    import Graphics.X11.ExtraTypes.XF86
+    import System.Exit
+    import System.IO (Handle, hPutStrLn)
+    import System.IO
+    import qualified XMonad.StackSet as W
+    import qualified Data.Map as M
+    import qualified XMonad.Actions.FlexibleResize as Flex
+    import qualified XMonad.Util.ExtensibleState as XS
+
+    myManageHook = composeAll
+        [ className =? "Gimp"      --> doFloat
+        , className =? "wine" --> doFloat
+        ]
+
+    main = xmonad $ defaultConfig
+        { borderWidth        = 2
+        , layoutHook=avoidStruts $ layoutHook defaultConfig
+        , manageHook=manageHook defaultConfig <+> manageDocks
+        , terminal           = "urxvt"
+        , normalBorderColor  = "#cccccc"
+        , focusedBorderColor = "#cd8b00" }
+
